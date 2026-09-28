@@ -1,10 +1,10 @@
 package biblioteca;
+import biblioteca.exception.LivroIndisponivelException;
+import biblioteca.exception.LivroNaoEncontradoException;
+import biblioteca.exception.UsuarioNaoEncontradoException;
 import biblioteca.model.Livro;
 import biblioteca.model.Usuario;
 import biblioteca.service.BibliotecaService;
-import biblioteca.exception.EmprestimoNaoEncontradoException;
-import biblioteca.exception.LivroIndisponivelException;
-import biblioteca.model.Emprestimo;
 
 public class Main {
 
@@ -18,37 +18,28 @@ public class Main {
 		b.cadastrarLivro(l2);
 		b.cadastrarUsuario(u);
 		
-		System.out.println(b.listarLivros());
-		System.out.println(b.listarUsuarios());
-		
 		try {
-		    b.emprestar("999", 1234);
+		    b.emprestar("000", 1234);
 		    System.out.println("Empréstimo Realizado com sucesso");
 		} catch (LivroIndisponivelException ex) {
 		    System.out.println("Erro: " + ex.getMessage());
+		} catch (LivroNaoEncontradoException ex) {
+		    System.out.println("Erro: " + ex.getMessage()); 
+		} catch (UsuarioNaoEncontradoException ex) {
+		    System.out.println("Erro: " + ex.getMessage()); 
 		}
 
-		
-		System.out.println(b.listarEmprestimosAtivos());
 		
 		try {
-		    b.devolver("999", 1234);
-		    System.out.println("Devolução Realizada com sucesso");
-		} catch (EmprestimoNaoEncontradoException ex) {
+		    b.emprestar("999", 5555);
+		    System.out.println("Empréstimo Realizado com sucesso");
+		} catch (LivroIndisponivelException ex) {
 		    System.out.println("Erro: " + ex.getMessage());
+		} catch (LivroNaoEncontradoException ex) {
+		    System.out.println("Erro: " + ex.getMessage()); 
+		} catch (UsuarioNaoEncontradoException ex) {
+		    System.out.println("Erro: " + ex.getMessage()); 
 		}
-
-		
-		System.out.println(b.listarEmprestimosAtivos());
-		
-		System.out.println(b.buscarLivro("hobbit"));
-		System.out.println(b.buscarLivro("Machado"));
-		System.out.println(b.buscarLivro("xyz"));
-		
-		
-		
-		
-		
 		
 
 	}
