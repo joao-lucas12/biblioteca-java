@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import biblioteca.exception.EmprestimoNaoEncontradoException;
 import biblioteca.exception.LivroIndisponivelException;
+import biblioteca.exception.LivroNaoEncontradoException;
+import biblioteca.exception.UsuarioNaoEncontradoException;
 import biblioteca.model.Emprestimo;
 import biblioteca.model.Livro;
 import biblioteca.model.Usuario;
@@ -26,9 +28,16 @@ public class BibliotecaService {
 		usuarios.put(usuario.getId(), usuario);
 	}
 	
-	public void emprestar(String isbn, int idUsuario) throws LivroIndisponivelException {
+	public void emprestar(String isbn, int idUsuario) throws LivroIndisponivelException, UsuarioNaoEncontradoException, LivroNaoEncontradoException {
 		Livro livro = livros.get(isbn);
+		if (livro == null) {
+			throw new LivroNaoEncontradoException ("Este livro não consta no sistema");
+		}
 		Usuario usuario = usuarios.get(idUsuario);
+		
+		if (usuario == null) {
+			throw new UsuarioNaoEncontradoException ("Este usuário não consta no sistema");
+		}
 		
 		if(!livro.reservarCopia()) {
 			throw new LivroIndisponivelException("Sem Cópias dísponiveis deste livro");
@@ -38,7 +47,6 @@ public class BibliotecaService {
 		}
 		
 	}
-	//git teste
 	
 	
 	public void devolver(String isbn, int idUsuario) throws EmprestimoNaoEncontradoException {
