@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import biblioteca.exception.EmprestimoNaoEncontradoException;
 import biblioteca.exception.LivroIndisponivelException;
+import biblioteca.exception.LivroJaCadastradoException;
 import biblioteca.exception.LivroNaoEncontradoException;
 import biblioteca.exception.UsuarioNaoEncontradoException;
 import biblioteca.model.Emprestimo;
@@ -20,7 +21,10 @@ public class BibliotecaService {
 	private Map<Integer, Usuario> usuarios = new HashMap<>();
 	private List<Emprestimo> emprestimos = new ArrayList<>();
 	
-	public void cadastrarLivro(Livro livro) {
+	public void cadastrarLivro(Livro livro) throws LivroJaCadastradoException{
+		if(livros.containsKey(livro.getIsbn())) {
+			throw new LivroJaCadastradoException ("Este livro já foi cadastrado");
+		}
 		livros.put(livro.getIsbn(), livro);
 	}
 	
