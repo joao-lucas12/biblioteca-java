@@ -96,6 +96,20 @@ public class BibliotecaService {
 	    return new ArrayList<>(usuarios.values());
 	}
 	
+	public List<Emprestimo> listarTodosEmprestimos() {
+	    return new ArrayList<>(emprestimos);
+	}
+	
+	public void carregarDados(List<Livro> livros, List<Usuario> usuarios, List<Emprestimo> emprestimos) {
+	    for (Livro l : livros) {
+	        this.livros.put(l.getIsbn(), l);
+	    }
+	    for (Usuario u : usuarios) {
+	        this.usuarios.put(u.getId(), u);
+	    }
+	    this.emprestimos.addAll(emprestimos);
+	}
+	
 	
 		
 }
