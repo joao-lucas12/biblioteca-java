@@ -64,6 +64,7 @@ public class Main {
 				   System.out.println("Insira o Id do usuário: ");
 				   int id = scanner.nextInt();
 				   scanner.nextLine();
+<<<<<<< HEAD
 				   
 				   try {
 					   Usuario usuario = new Usuario(nome, email, id);
@@ -73,6 +74,12 @@ public class Main {
 					   System.out.println("Erro: " + ex.getMessage());
 				   }
 
+=======
+				 
+				   Usuario usuario = new Usuario(nome, email, id);
+				   service.cadastrarUsuario(usuario);
+				   System.out.println("Usuário Cadastrado com sucesso!");
+>>>>>>> main
 					   
 				   break;
 				   
