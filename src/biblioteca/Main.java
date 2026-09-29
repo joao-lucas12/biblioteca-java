@@ -2,6 +2,7 @@ package biblioteca;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 import biblioteca.exception.EmprestimoNaoEncontradoException;
 import biblioteca.exception.LivroIndisponivelException;
@@ -46,17 +47,24 @@ public class Main {
 			System.out.println("5- Listar livros, usuários e empréstimos ativos");
 			System.out.println("6- Buscar livro");
 			System.out.println("7- Sair");
-			int decisao = scanner.nextInt();
-			scanner.nextLine();
+			int decisao;
+			try {
+			    decisao = scanner.nextInt();
+			    scanner.nextLine();
+			} catch (InputMismatchException ex) {
+			    System.out.println("Opção inválida, digite um número.");
+			    scanner.nextLine();
+			    continue;
+			}
 			
 			switch (decisao) {
 			   case 1: 
 				   System.out.println("Insira o título do livro: ");
-				   String titulo = scanner.nextLine();
+				   String titulo = scanner.nextLine().trim();
 				   System.out.println("Insira o autor do livro: ");
-				   String autor = scanner.nextLine();
+				   String autor = scanner.nextLine().trim();
 				   System.out.println("Insira o ISBN do livro: ");
-				   String isbn = scanner.nextLine();
+				   String isbn = scanner.nextLine().trim();
 				   System.out.println("Insira a quantidade de copias do livro: ");
 				   int copias = scanner.nextInt();
 				   scanner.nextLine();
@@ -74,9 +82,9 @@ public class Main {
 				   
 			   case 2: 
 				   System.out.println("Insira o nome do usuário: ");
-				   String nome = scanner.nextLine();
+				   String nome = scanner.nextLine().trim();
 				   System.out.println("Insira o email do usuário: ");
-				   String email = scanner.nextLine();
+				   String email = scanner.nextLine().trim();
 				   System.out.println("Insira o Id do usuário: ");
 				   int id = scanner.nextInt();
 				   scanner.nextLine();
@@ -94,7 +102,7 @@ public class Main {
 				   
 			   case 3: 
 				   System.out.println("Insira o ISBN do livro a ser emprestado: ");
-				   String isbnE = scanner.nextLine();
+				   String isbnE = scanner.nextLine().trim();
 				   System.out.println("Insira o Id do usuário: ");
 				   int idE = scanner.nextInt();
 				   scanner.nextLine();
@@ -115,7 +123,7 @@ public class Main {
 				   
 			   case 4: 
 				   System.out.println("Insira o ISBN do livro a ser devolvido: ");
-				   String isbnD = scanner.nextLine();
+				   String isbnD = scanner.nextLine().trim();
 				   System.out.println("Insira o Id do usuário que está devolvendo: ");
 				   int idD = scanner.nextInt();
 				   scanner.nextLine();
@@ -143,7 +151,7 @@ public class Main {
 				   
 			   case 6: 
 				   System.out.println("Insira o título ou autor do livro que deseja: ");
-				   String busca = scanner.nextLine();
+				   String busca = scanner.nextLine().trim();
 
 				   
 				   System.out.println("Livro Encontrado: " + service.buscarLivro(busca));
