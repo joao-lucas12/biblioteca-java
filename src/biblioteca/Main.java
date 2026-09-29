@@ -6,6 +6,7 @@ import biblioteca.exception.EmprestimoNaoEncontradoException;
 import biblioteca.exception.LivroIndisponivelException;
 import biblioteca.exception.LivroJaCadastradoException;
 import biblioteca.exception.LivroNaoEncontradoException;
+import biblioteca.exception.UsuarioJaCadastradoException;
 import biblioteca.exception.UsuarioNaoEncontradoException;
 import biblioteca.model.Livro;
 import biblioteca.model.Usuario;
@@ -63,10 +64,22 @@ public class Main {
 				   System.out.println("Insira o Id do usuário: ");
 				   int id = scanner.nextInt();
 				   scanner.nextLine();
+<<<<<<< HEAD
+				   
+				   try {
+					   Usuario usuario = new Usuario(nome, email, id);
+					   service.cadastrarUsuario(usuario);
+					   System.out.println("Usuário Cadastrado com sucesso!");
+				   } catch (UsuarioJaCadastradoException ex) {
+					   System.out.println("Erro: " + ex.getMessage());
+				   }
+
+=======
 				 
 				   Usuario usuario = new Usuario(nome, email, id);
 				   service.cadastrarUsuario(usuario);
 				   System.out.println("Usuário Cadastrado com sucesso!");
+>>>>>>> main
 					   
 				   break;
 				   
