@@ -21,28 +21,41 @@ Funcionalidades
 Arquitetura
 
 biblioteca/
+
 ├── model/          # Entidades: Livro, Usuario, Emprestimo
+
 ├── exception/      # Exceções customizadas de regras de negócio
+
 ├── service/        # Lógica de negócio (BibliotecaService)
+
 ├── repository/     # Persistência em arquivo (CSV)
+
 └── Main.java       # Menu interativo (ponto de entrada)
 
 Como rodar
 
 1- Clone o repositório
+
 2- Importe como projeto Java no Eclipse (ou IDE de sua preferência)
+
 3- Execute a classe Main.java
+
 4- Os arquivos de dados (livros.txt, usuarios.txt, emprestimos.txt) são criados automaticamente na raiz do projeto
 
 Limitações conhecidas
+
 . Entrada de dados não numérica em campos que esperam números (ex: digitar uma letra na quantidade de cópias) causa erro de execução — tratamento planejado para uma próxima iteração
+
 . Sem interface gráfica (uso via terminal)
 
 Próximos passos
 
 Migração para Spring Boot + Spring Data JPA
+
 API REST substituindo o menu de terminal
+
 Persistência em banco de dados relacional (PostgreSQL)
+
 Testes automatizados (JUnit + Mockito)
 
 Projeto desenvolvido como parte de um plano de estudos para atuação como desenvolvedor Java júnior.
