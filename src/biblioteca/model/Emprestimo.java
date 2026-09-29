@@ -15,6 +15,13 @@ public class Emprestimo {
     	
     }
 	
+	public Emprestimo(Livro livro, Usuario usuario, LocalDate dataEmprestimo, boolean devolvido) {
+	    this.livro = livro;
+	    this.usuario = usuario;
+	    this.dataEmprestimo = dataEmprestimo;
+	    this.devolvido = devolvido;
+	}
+	
 	public Livro getLivro() {
     	return livro;
     }

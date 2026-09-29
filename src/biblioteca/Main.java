@@ -1,5 +1,6 @@
 package biblioteca;
 
+import java.util.List;
 import java.util.Scanner;
 
 import biblioteca.exception.EmprestimoNaoEncontradoException;
@@ -8,8 +9,12 @@ import biblioteca.exception.LivroJaCadastradoException;
 import biblioteca.exception.LivroNaoEncontradoException;
 import biblioteca.exception.UsuarioJaCadastradoException;
 import biblioteca.exception.UsuarioNaoEncontradoException;
+import biblioteca.model.Emprestimo;
 import biblioteca.model.Livro;
 import biblioteca.model.Usuario;
+import biblioteca.repository.EmprestimoRepositorio;
+import biblioteca.repository.LivroRepositorio;
+import biblioteca.repository.UsuarioRepositorio;
 import biblioteca.service.BibliotecaService;
 
 public class Main {
@@ -19,7 +24,18 @@ public class Main {
 		
 		boolean continuar = true;
 		
+		LivroRepositorio livroRepositorio = new LivroRepositorio();
+		UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+		EmprestimoRepositorio emprestimoRepositorio = new EmprestimoRepositorio();
 		BibliotecaService service = new BibliotecaService();
+		
+		List<Livro> livros = livroRepositorio.carregar();
+		List<Usuario> usuarios = usuarioRepositorio.carregar();
+		
+		List<Emprestimo> emprestimos = emprestimoRepositorio.carregar(livros, usuarios);
+		
+		service.carregarDados(livros, usuarios, emprestimos);
+		
 		
 		while (continuar) {
 
@@ -64,7 +80,6 @@ public class Main {
 				   System.out.println("Insira o Id do usuário: ");
 				   int id = scanner.nextInt();
 				   scanner.nextLine();
-<<<<<<< HEAD
 				   
 				   try {
 					   Usuario usuario = new Usuario(nome, email, id);
@@ -74,13 +89,7 @@ public class Main {
 					   System.out.println("Erro: " + ex.getMessage());
 				   }
 
-=======
-				 
-				   Usuario usuario = new Usuario(nome, email, id);
-				   service.cadastrarUsuario(usuario);
-				   System.out.println("Usuário Cadastrado com sucesso!");
->>>>>>> main
-					   
+	   
 				   break;
 				   
 			   case 3: 
@@ -142,6 +151,14 @@ public class Main {
 				   break;
 				   
 			   case 7: 
+				   List<Livro> livrosAtuais = service.listarLivros();
+				   List<Usuario> usuariosAtuais = service.listarUsuarios();
+				   List<Emprestimo> emprestimosAtuais = service.listarTodosEmprestimos();
+				   
+				   livroRepositorio.salvar(livrosAtuais);
+				   usuarioRepositorio.salvar(usuariosAtuais);
+				   emprestimoRepositorio.salvar(emprestimosAtuais);
+				   
 				   continuar = false;
 				   break;
 			
