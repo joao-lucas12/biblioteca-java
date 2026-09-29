@@ -5,17 +5,29 @@ Sistema de biblioteca em Java puro (sem frameworks), rodando via terminal, desen
 Funcionalidades
 
 . Cadastro de livros e usuários, com validação de duplicidade (ISBN e ID únicos)
+
 . Empréstimo e devolução de livros, com controle automático de estoque
+
 . Listagem de livros, usuários e empréstimos ativos
+
 . Busca de livros por título ou autor (case-insensitive)
+
 . Persistência de dados em arquivos CSV (os dados sobrevivem entre execuções)
+
 . Menu interativo via terminal
+
 . Conceitos aplicados
+
 . Programação orientada a objetos: encapsulamento, herança, interfaces
+
 . Coleções (List, Map) e Streams/lambdas
+
 . Exceções customizadas para representar regras de negócio
+
 . Generics (interface Repositorio<T>)
+
 . Leitura e escrita de arquivos (BufferedReader/BufferedWriter)
+
 . Sobrecarga de construtores
 
 Arquitetura
