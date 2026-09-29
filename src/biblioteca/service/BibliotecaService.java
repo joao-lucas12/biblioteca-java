@@ -10,6 +10,7 @@ import biblioteca.exception.EmprestimoNaoEncontradoException;
 import biblioteca.exception.LivroIndisponivelException;
 import biblioteca.exception.LivroJaCadastradoException;
 import biblioteca.exception.LivroNaoEncontradoException;
+import biblioteca.exception.UsuarioJaCadastradoException;
 import biblioteca.exception.UsuarioNaoEncontradoException;
 import biblioteca.model.Emprestimo;
 import biblioteca.model.Livro;
@@ -28,7 +29,10 @@ public class BibliotecaService {
 		livros.put(livro.getIsbn(), livro);
 	}
 	
-	public void cadastrarUsuario(Usuario usuario) {
+	public void cadastrarUsuario(Usuario usuario) throws UsuarioJaCadastradoException {
+		if(usuarios.containsKey(usuario.getId())) {
+			throw new UsuarioJaCadastradoException("Este usuário já foi cadastrado");
+		}
 		usuarios.put(usuario.getId(), usuario);
 	}
 	
